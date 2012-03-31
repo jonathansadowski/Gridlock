@@ -1,5 +1,6 @@
 // Copyright (C) 2011 - Texas Instruments, Jason Kridner 
-//
+// Note: Modified so that input pin mux is 37 instead of 27
+// This allows the input pin to be tied to ground
 // 
 var fs = require('fs');
 var child_process = require('child_process');
@@ -60,7 +61,7 @@ pinMode = exports.pinMode = function(pin, mode)
                     "/sys/kernel/debug/omap_mux/" + pin.mux, "w"
                 );
                 if(mode == OUTPUT)  fs.writeSync(muxfile, "7", null);
-                    else fs.writeSync(muxfile, "27", null);
+                    else fs.writeSync(muxfile, "37", null);
             } catch(ex3) {  
                 console.log("" + ex3);
                 console.log("Unable to configure pinmux for: " + pin.name +
@@ -75,7 +76,7 @@ pinMode = exports.pinMode = function(pin, mode)
                 child_process.exec("mount -t debugfs none /sys/kernel/debug",
                     function(error, stderr, stdout) {
                         if(mode == OUTPUT) var muxfile = fs.writeFile("/sys/kernel/debug/omap_mux/" + pin.mux, "7");
-                            else var muxfile = fs.writeFile("/sys/kernel/debug/omap_mux/" + pin.mux, "27");
+                            else var muxfile = fs.writeFile("/sys/kernel/debug/omap_mux/" + pin.mux, "37");
                     }
                 );
             }
