@@ -1,0 +1,16 @@
+{
+    "port":"4242",
+    "pins":{
+        "r":"P8_20",
+        "y":"P8_21",
+        "g":"P8_22",
+        "rPrime":null,
+        "yPrime":null,
+        "gPrime":null,
+        "modeButton":"P8_3"
+    },
+    "pusher":{
+        "key":null,
+        "channel":"Gridlock"
+    }
+}

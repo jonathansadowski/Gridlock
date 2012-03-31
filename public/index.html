@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+<title>Gridlock</title>
+<link href="/css/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+
+#stoplight{
+	background-color:#111111;
+	width: 120px;
+	padding: 20px 12px;
+}
+#stoplight div{
+	margin:10px;
+	width:100px;
+	height:100px;
+	border-radius:50px;
+	-moz-border-radius:50px;
+	-webkit-border-radius:50px;
+	-khtml-border-radius:50px;
+	background-color:#333333;
+}
+.red #red{
+	background-color:#ED0000;
+	background: -moz-radial-gradient(center, ellipse cover, #ED0000 0%, #663333 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#ED0000), color-stop(100%,#663333)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover, #ED0000 0%,#663333 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, #ED0000 0%,#663333 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, #ED0000 0%,#663333 100%); /* IE10+ */
+	background: radial-gradient(center, ellipse cover, #ED0000 0%,#663333 100%); /* W3C */
+}
+
+.yellow #yellow{
+	background-color:#FFF504;
+	background: -moz-radial-gradient(center, ellipse cover, #FFF504 0%, #443211 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#FFF504), color-stop(100%,#443211)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover, #FFF504 0%,#443211 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, #FFF504 0%,#443211 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, #FFF504 0%,#443211 100%); /* IE10+ */
+	background: radial-gradient(center, ellipse cover, #FFF504 0%,#443211 100%); /* W3C */
+}
+
+.green #green{
+	background-color:#02FF00;
+	background: -moz-radial-gradient(center, ellipse cover, #02FF00 0%, #344433 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#02FF00), color-stop(100%,#344433)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover, #02FF00 0%,#344433 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, #02FF00 0%,#344433 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, #02FF00 0%,#344433 100%); /* IE10+ */
+	background: radial-gradient(center, ellipse cover, #02FF00 0%,#344433 100%); /* W3C */
+}
+</style>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+	<div class="container">
+		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		</a>
+		<a class="brand" href="#">Gridlock</a>
+		<div class="nav-collapse">
+		<ul class="nav">
+			<!--<li class="active"><a href="#">Home</a></li>
+			<li><a href="#about">About</a></li>
+			<li><a href="#contact">Contact</a></li>-->
+		</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="span3">
+			<div id="stoplight">
+				<div id="red"></div>
+				<div id="yellow"></div>
+				<div id="green"></div>
+			</div>
+		</div>
+		<div class="span9">
+			<h2>Mode</h2>
+			<p>
+				<input type="button" value="Off" data-url="/off" class="mode-off btn btn-large" />
+				<input type="button" value="Red" data-url="/red" class="mode-red btn btn-large" />
+				<input type="button" value="Yellow" data-url="/yellow" class="mode-yellow btn btn-large" />
+				<input type="button" value="Green" data-url="/green" class="mode-green btn btn-large" />
+				<input type="button" value="Red Blink" data-url="/redBlink" class="mode-redBlink btn btn-large" />
+				<input type="button" value="Yellow Blink" data-url="/yellowBlink" class="mode-yellowBlink btn btn-large" />
+				<input type="button" value="Traffic" data-url="/green30000yellow3000red33000" class="mode-traffic btn btn-large" />
+			</p>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("input[type=button]").click(function(){
+		$.get($(this).data('url'));
+	});
+	var stoplight=$("#stoplight");
+	var socket = io.connect(window.location.protocol+'//'+window.location.hostname+':'+window.location.port);
+	socket.on('state', function (state) {
+		if(state.g) stoplight.addClass("green"); else stoplight.removeClass("green");
+		if(state.y) stoplight.addClass("yellow"); else stoplight.removeClass("yellow");
+		if(state.r) stoplight.addClass("red"); else stoplight.removeClass("red");
+		$("input[type=button]").removeClass('btn-inverse');
+		$("input[type=button].mode-"+state.mode).addClass('btn-inverse');
+	});
+});
+</script>
+</body>
+</html>
