@@ -14,7 +14,7 @@ Installation
 
 NOTE: instructions assume that you are working on a Beagle Bone with both git and npm installed
 
-1. `git clone https://github.com/jonathansadowski/Gridlock.git`
+1. `git clone http://github.com/jonathansadowski/Gridlock.git`
 2. `cd Gridlock`
 3. `npm install nconf express socket.io websocket-client`
 4. `node app.js`

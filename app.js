@@ -9,7 +9,7 @@
  ***************************************************************/
 
 var nconf = require('nconf');
-nconf.argv().env().file({ file: 'config.json' });
+nconf.argv().env().file({ file: __dirname+'/config.json' });
 
 var bb = require('./bonescript'),
 	express = require('express'),

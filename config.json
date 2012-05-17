@@ -1,12 +1,12 @@
 {
     "port":"4242",
     "pins":{
-        "r":"P8_20",
-        "y":"P8_21",
-        "g":"P8_22",
-        "rPrime":null,
-        "yPrime":null,
-        "gPrime":null,
+        "r":null,
+        "y":null,
+        "g":null,
+        "rPrime":"P8_19",
+        "yPrime":"P8_21",
+        "gPrime":"P8_23",
         "modeButton":"P8_3"
     },
     "pusher":{
