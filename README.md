@@ -19,6 +19,17 @@ NOTE: instructions assume that you are working on a Beagle Bone with both git an
 3. `npm install nconf express socket.io websocket-client`
 4. `node app.js`
 
+Running Gridlock as a Service
+--------------
+
+NOTE: You may have to change the installation path inside of the startup.sh script if you installed Gridlock in a directory other than /root/Gridlock
+
+1. `npm install -g forever`
+2. `mv startup.sh /etc/init.d/Gridlock`
+3. `chmod 755 /etc/init.d/Gridlock`
+4. `ln -s /etc/init.d/Gridlock /etc/rc5.d/S42Gridlock`
+
+
 More Information
 --------------
   - [Project Page]
