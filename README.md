@@ -37,11 +37,12 @@ More Information
 
 Hardware
 --------------
-Gridlock and Beagle Bone will work with a vast array of hardware -- everything from simple LEDs to relays.  I am currently using a [SainSmart 4-Channel 5V Relay] attached to the GPIO pins of the [Beagle Bone].  For more information about the hardware I use, see the [Project Page].
+Gridlock and Beagle Bone will work with a vast array of hardware -- everything from simple LEDs to relays.  I am currently using a [SainSmart 4-Channel 5V Solid State Relay] attached to the GPIO pins of the [Beagle Bone].  I was previously using the [SainSmart 4-Channel 5V Relay], which is a great relay, but because its a physical relay, you will hear a clicking noise when the light changes, which can be annoying in any of the "blinking" modes.  I would recommend the solid state version. For more information about the hardware I use, see the [Project Page].
 
   [Project Page]: http://jonathansadowski.com/projects/Gridlock
-  [Beagle Bone]: http://beagleboard.org/bone
+  [Beagle Bone]: http://amzn.to/beaglebone
   [SainSmart 4-Channel 5V Relay]: http://amzn.to/5VRelay
+  [SainSmart 4-Channel 5V Solid State Relay]: http://amzn.to/5VSSRelay
   
 
 
